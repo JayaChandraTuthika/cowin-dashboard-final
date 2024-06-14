@@ -1,10 +1,22 @@
 import {BarChart, Bar, XAxis, YAxis, Legend} from 'recharts'
 
 import './index.css'
+import {useEffect, useState} from 'react'
 
 const VaccinationCoverage = props => {
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
   const {data} = props
   //   console.log(data)
+  useEffect(() => {
+    const wrapperWidth = document.getElementById('vaccinationCoverage')
+      .clientWidth
+    const calculatedWidth = (90 * wrapperWidth) / 100
+    const calculatedHeight = Number((calculatedWidth * (6 / 10)).toFixed(2))
+    // console.log(calculatedWidth, calculatedHeight)
+    setHeight(calculatedHeight)
+    setWidth(calculatedWidth)
+  }, [width])
   const DataFormatter = number => {
     if (number > 1000) {
       return `${(number / 1000).toString()}k`
@@ -14,15 +26,15 @@ const VaccinationCoverage = props => {
 
   return (
     <>
-      <h1 className="chart-heading-2">Vaccination Coverage</h1>
+      <h1 className="chart-heading">Vaccination Coverage</h1>
 
       <BarChart
         data={data}
         margin={{
           top: 5,
         }}
-        width={1000}
-        height={400}
+        width={width}
+        height={height}
       >
         <XAxis
           dataKey="vaccine_date"
@@ -42,7 +54,7 @@ const VaccinationCoverage = props => {
           wrapperStyle={{
             padding: 20,
             fontFamily: 'roboto',
-            fontSize: '17px',
+            fontSize: width > 500 ? '17px' : '12px',
             fontWeight: '600',
           }}
         />

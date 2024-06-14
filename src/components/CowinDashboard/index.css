@@ -27,7 +27,7 @@
 }
 .chart-container-bg {
   background-color: #1c1c2b;
-  padding: 25px 40px;
+  padding: 2% 3%;
   border-radius: 10px;
   margin: 25px 0px;
   margin-top: 0;
@@ -52,4 +52,16 @@
   color: white;
   font-family: 'Bree Serif';
   margin-top: 10px;
+}
+@media screen and (max-width: 768px) {
+  .nav-icon {
+    height: 35px;
+  }
+  .nav-logo-text {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+  .main-heading {
+    font-size: 22px;
+  }
 }

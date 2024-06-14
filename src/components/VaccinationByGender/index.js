@@ -1,15 +1,27 @@
 import {PieChart, Pie, Legend, Cell} from 'recharts'
 
 import './index.css'
+import {useEffect, useState} from 'react'
 
 const VaccinationByGender = props => {
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
   const {data} = props
 
+  useEffect(() => {
+    const wrapperWidth = document.getElementById('vaccinationCoverage')
+      .clientWidth
+    const calculatedWidth = (90 * wrapperWidth) / 100
+    const calculatedHeight = Number((calculatedWidth * (6 / 10)).toFixed(2))
+    // console.log(calculatedWidth, calculatedHeight)
+    setHeight(calculatedHeight)
+    setWidth(calculatedWidth)
+  }, [width])
   return (
     <>
       <h1 className="chart-heading">Vaccination by gender</h1>
 
-      <PieChart width={1000} height={400}>
+      <PieChart width={width} height={height}>
         <Pie
           cx="50%"
           cy="50%"
@@ -32,7 +44,7 @@ const VaccinationByGender = props => {
           wrapperStyle={{
             padding: 0,
             fontFamily: 'Roboto',
-            fontSize: '17px',
+            fontSize: width > 500 ? '17px' : '12px',
             fontWeight: '600',
           }}
         />

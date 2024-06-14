@@ -60,13 +60,13 @@ class CowinDashboard extends Component {
       case statusConstants.success:
         element = (
           <>
-            <div className="chart-container-bg">
+            <div className="chart-container-bg" id="vaccinationCoverage">
               <VaccinationCoverage data={last7DaysVaccination} />
             </div>
-            <div className="chart-container-bg">
+            <div className="chart-container-bg" id="vaccinationByGender">
               <VaccinationByGender data={vaccinationByGender} />
             </div>
-            <div className="chart-container-bg">
+            <div className="chart-container-bg" id="vaccinationByAge">
               <VaccinationByAge data={vaccinationByAge} />
             </div>
           </>
@@ -114,4 +114,3 @@ class CowinDashboard extends Component {
 }
 
 export default CowinDashboard
-
